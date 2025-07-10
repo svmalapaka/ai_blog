@@ -11,8 +11,13 @@ quotes = [
     "🔍 'Debugging is 80% of machine learning.'"
 ]
 
+
+DEBUG_TEMPLATE = False
+
 @app.route("/")
 def home():
+    if DEBUG_TEMPLATE:
+        return "🚨 Flask route is responding — template skipped!"
     return render_template("index.html", title="Home")
 
 @app.route("/quote")
@@ -39,5 +44,10 @@ def posts(post):
 def docs():
     return render_template("docs.html", title="Docs")
 
+for rule in app.url_map.iter_rules():
+    print(rule.endpoint, rule.rule)
+
+print("✅ Reached app.run()")
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=8081)
