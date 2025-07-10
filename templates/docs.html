@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>📄 Blog Setup Documentation</h1>
+
+<p>This page outlines how <strong>mvsastry.dev</strong> is built — from Flask routing to Nginx proxying.</p>
+
+<h2>🧱 Structure Overview</h2>
+<ul>
+  <li><strong>/</strong> → Home page</li>
+  <li><strong>/about</strong> → Mission & personal profile</li>
+  <li><strong>/resources</strong> → ML tools & tutorials</li>
+  <li><strong>/projects</strong> → Widget & server showcase</li>
+  <li><strong>/posts/...</strong> → Individual blog posts</li>
+</ul>
+
+<h2>🔧 Routing Logic</h2>
+<p>Inside <code>ai_quote_app.py</code>, routes are defined for all pages. Dynamic blog posts are served from:</p>
+
+<pre><code>@app.route("/posts/&lt;post&gt;")
+def posts(post):
+    return render_template(f"posts/{post}", title=post.replace("-", " ").title())
+</code></pre>
+
+<h2>🌐 Nginx Config Snippet</h2>
+
+<pre><code>location / {
+  proxy_pass http://127.0.0.1:5000;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+}
+</code></pre>
+
+<h2>✅ Active Pages</h2>
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/resources">Resources</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/posts/ai-ml-lab-setup.html">AI/ML Lab Setup Post</a></li>
+</ul>
+
+<h2>📁 Future Enhancements</h2>
+<ul>
+  <li>Convert <code>jupyterlab-setup.html</code> to Flask layout</li>
+  <li>Create a blog feed at <code>/posts</code></li>
+  <li>Style <code>/projects</code> with thumbnails and cards</li>
+</ul>
+
+{% endblock %}

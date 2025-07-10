@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>🧠 My AI/ML Lab Setup on Ubuntu</h1>
+<p><em>Posted on July 7, 2025</em></p>
+
+<p>I recently repurposed an old laptop into a dedicated AI/ML lab running Ubuntu Server. This setup gives me full control over my development environment while remaining lightweight and secure.</p>
+
+<h2>🔧 Hardware Used</h2>
+<ul>
+  <li>Old Dell Latitude laptop</li>
+  <li>Intel Core i5 processor</li>
+  <li>8 GB RAM</li>
+  <li>500 GB SSD</li>
+</ul>
+
+<h2>💻 OS Installation</h2>
+<p>I installed <a href="https://ubuntu.com/download/server">Ubuntu Server</a> instead of Ubuntu Desktop to keep the system lean. The installer is straightforward, and I opted for OpenSSH during setup so I could manage it remotely.</p>
+
+<h2>📦 Package Setup with Conda</h2>
+<p>I installed Miniconda for Python package management. Here's the basic flow:</p>
+
+<pre><code>sudo apt update
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+</code></pre>
+
+<p>After installation, I created an ML-focused environment:</p>
+
+<pre><code>conda create -n ml-lab python=3.10 scikit-learn pandas jupyterlab matplotlib</code></pre>
+
+<h2>🌐 Remote Access with Cloudflare Tunnels</h2>
+<p>I wanted secure access to the server without exposing it directly over the internet. I configured a <strong>Cloudflare Tunnel</strong> and mapped subdomains like:</p>
+<ul>
+  <li><code>jupyter.mvsastry.dev</code> → JupyterLab interface</li>
+  <li><code>docs.mvsastry.dev</code> → Flask-powered documentation</li>
+</ul>
+
+<h2>🚀 Final Thoughts</h2>
+<p>This setup gives me flexibility to run experiments from anywhere, share live demos, and manage everything through VS Code, SSH, or the browser. The next step is automating backups and deploying web-facing ML APIs — stay tuned!</p>
+
+{% endblock %}
