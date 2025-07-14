@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>🗂️ Backup Status</h1>
+<ul>
+  {% for file, exists in status.items() %}
+    <li><strong>{{ file }}:</strong> {{ "✅ Present" if exists else "❌ Missing" }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>🌟 Featured Tool of the Week</h1>
+<h2>{{ featured.name }}</h2>
+<p>{{ featured.summary }}</p>
+<p><a href="{{ featured.link }}">Read the full story →</a></p>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>🚦 Launch Status</h1>
+<ul>
+  {% for key, value in status.items() %}
+    <li><strong>{{ key.replace('_', ' ').title() }}:</strong> {{ value }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

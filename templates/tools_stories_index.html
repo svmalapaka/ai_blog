@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>🧰 Tool Stories Index</h1>
+<ul>
+  {% for link in links %}
+    <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

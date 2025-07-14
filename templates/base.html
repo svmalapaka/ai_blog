@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title or "Lab Page" }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='copilot_widget.css') }}">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+
+  <div id="main-content">
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- 🧠 Copilot Widget -->
+  <div id="copilot-widget">
+    <textarea id="user-input" placeholder="Ask me anything..."></textarea>
+    <button onclick="sendMessage()">▶</button>
+    <div id="copilot-response"></div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('user-input').value;
+      fetch('/copilot-widget-query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: input })
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('copilot-response').textContent = data.response;
+      })
+      .catch(() => {
+        document.getElementById('copilot-response').textContent = "Something went wrong.";
+      });
+    }
+  </script>
+
+</body>
+</html>
