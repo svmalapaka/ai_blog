@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- 🔍 Ask Another Topic Form -->
+<form method="get" action="/ask-the-lab" style="margin: 1rem 0;">
+  <input type="text" name="query" placeholder="🧠 Ask a topic..." style="padding: 0.5rem; width: 60%;">
+  <button type="submit" style="padding: 0.5rem;">Ask</button>
+</form>
+
+
+<!-- 🧠 Insight Reply Block -->
+<div style="max-width: 700px; margin: 2rem auto; background: #f9f9f9; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <h2>🧠 Lab Insight for <span style="color: #1b1f3b;">{{ query }}</span></h2>
+  <p style="font-size: 1.1rem;">{{ reply }}</p>
+
+  {% if link %}
+    <p style="margin-top: 1rem;">
+      <a href="{{ link }}" style="color: #1b1f3b;">📘 Read full tutorial or tool story</a>
+    </p>
+  {% endif %}
+</div>
+
+<!-- 💡 Suggested Topics -->
+<div style="max-width: 700px; margin: 2rem auto;">
+  <h3 style="margin-bottom: 1rem;">💡 You might also like:</h3>
+  <ul style="padding-left: 1.5rem; font-size: 1rem;">
+    <li><a href="/ask-the-lab?query=tensorflow">🧠 TensorFlow – Neural nets for modern AI</a></li>
+    <li><a href="/ask-the-lab?query=nginx">📦 Nginx – Your reverse proxy and static server</a></li>
+    <li><a href="/ask-the-lab?query=jinja2">🎨 Jinja2 – Dynamic templates for Flask apps</a></li>
+  </ul>
+</div>
+
+
+<!-- 🕒 Recently Asked -->
+{% if recent %}
+  <div style="max-width: 700px; margin: 2rem auto;">
+    <h3>🕒 Recently Asked Topics:</h3>
+    <ul style="padding-left: 1.5rem;">
+      {% for term in recent %}
+        <li><a href="/ask-the-lab?query={{ term }}">{{ term.title() }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+<!-- 🧭 Navigation Links -->
+<div style="max-width: 700px; margin: 2rem auto; text-align: center;">
+  <a href="/tools-stories_index" style="margin-right: 1rem; color: #1b1f3b;">📘 Tool Stories Index</a>
+  <a href="/" style="margin-left: 1rem; color: #1b1f3b;">🏠 Return to Dashboard</a>
+</div>
+
+{% endblock %}
+

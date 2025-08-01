@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>🧭 Lab Map: Navigating the AI/ML Learning Lab</h1>
+<p>This page explains the structure, purpose, and flow of your lab — from homepage to diagnostics.</p>
+
+<hr>
+
+<h2>📄 Core Routes</h2>
+<ul>
+  <li><strong>/</strong> — Homepage with intro, links, and Copilot widget</li>
+  <li><strong>/lab-log</strong> — Renders <code>lab_log.md</code> as a styled reflection journal</li>
+  <li><strong>/tools-stories_index</strong> — Auto-generated list of tool tutorials</li>
+  <li><strong>/tool-viewer/&lt;name&gt;</strong> — Reads and renders a specific tool story</li>
+  <li><strong>/copilot-widget-query</strong> — Handles smart replies for the floating assistant</li>
+  <li><strong>/launch-status</strong> — Shows route health, tunnel status, and widget config</li>
+  <li><strong>/md-viewer/&lt;name&gt;</strong> — Renders any Markdown file from <code>/docs/</code></li>
+  <li><strong>/backup-status</strong> — Confirms presence of key files and backups</li>
+  <li><strong>/featured-tool</strong> — Highlights one tool with summary and link</li>
+</ul>
+
+<hr>
+
+<h2>📁 Folder Structure</h2>
+<ul>
+  <li><code>/templates/</code> — Jinja2 HTML templates for each route</li>
+  <li><code>/docs/</code> — Markdown files for logs, stories, and notes</li>
+  <li><code>/static/</code> — CSS and widget assets</li>
+  <li><code>app.py</code> — Main Flask app with all route logic</li>
+</ul>
+
+<hr>
+
+<h2>🧠 How It All Connects</h2>
+<p>The homepage links to your log, tool index, and diagnostics. Each tool story is browsable via <code>/tool-viewer/</code>, and the widget replies based on keywords. The lab is modular, readable, and scalable — designed for clarity and growth.</p>
+{% endblock %}

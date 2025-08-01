@@ -1,0 +1,354 @@
+from flask import Flask, request, jsonify, render_template
+import feedparser
+import datetime
+import os  # ✅ Add this if not already there
+
+app = Flask(__name__)  # ✅ Define your app here
+
+# 🔍 Debug: List templates visible to Flask
+print("Templates visible to Flask:", os.listdir("templates"))
+
+# 🧩 Blueprints
+# Synced on 18 July 2025 – 04:06 PM
+from routes.ai_in_education import ai_in_education
+from routes.ai_in_ethics import ai_in_ethics
+from routes.ai_in_finance import ai_in_finance
+from routes.ai_in_healthcare import ai_in_healthcare
+from routes.ai_in_hr import ai_in_hr
+from routes.ai_in_marketing import ai_in_marketing
+from routes.ai_in_supplychain import ai_in_supplychain
+from routes.tool_viewer import tool_viewer
+from routes.ask_the_lab import ask_the_lab
+from routes.dashboard import dashboard
+from routes.system_status import system_status
+from routes.lab_log import lab_log
+from routes.lab_credits import lab_credits
+from routes.lab_map import lab_map
+
+
+# 🔗 Register
+app.register_blueprint(tool_viewer)
+app.register_blueprint(ask_the_lab)
+app.register_blueprint(dashboard)
+app.register_blueprint(system_status)
+app.register_blueprint(lab_log)
+app.register_blueprint(lab_credits)
+app.register_blueprint(lab_map)
+app.register_blueprint(ai_in_education)
+app.register_blueprint(ai_in_ethics)
+app.register_blueprint(ai_in_finance)
+app.register_blueprint(ai_in_healthcare)
+app.register_blueprint(ai_in_hr)
+app.register_blueprint(ai_in_marketing)
+app.register_blueprint(ai_in_supplychain)
+
+import os
+
+ENV = os.getenv("FLASK_ENV", "development")
+
+if __name__ == '__main__':
+    app.run(
+        ssl_context=('certs/cert.pem', 'certs/key.pem'),
+        port=443 if ENV == "production" else 5001,
+        debug=(ENV == "development")
+    )
+
+
+RESPONSE_MAP = {
+    "pandas": {
+        "text": "📊 Pandas helps you load, clean, and shape data — great for wrangling raw datasets before training ML models.",
+        "link": "/tool-viewer/pandas_basics"
+    },
+    "flask": {
+        "text": "⚙️ Flask hosts your app and serves routes like /lab-log and /tools-stories_index — simple, powerful, flexible.",
+        "link": "/tool-viewer/flask_for_human_apps"
+    },
+    "jinja2": {
+        "text": "🎨 Jinja2 powers dynamic HTML rendering — it loops over your Markdown entries and injects variables with ease.",
+        "link": "/tool-viewer/jinja2_template_engine"
+    },
+    "tensorflow": {
+        "text": "🧠 TensorFlow builds neural networks — great for modeling brain-like behavior with layers, activations, and loss functions.",
+        "link": "/tool-viewer/tensorflow_mini_lab"
+    },
+    "numpy": {
+        "text": "⚙️ NumPy gives you fast matrix operations, array transformations, and the data engine under every ML workflow.",
+        "link": "/tool-viewer/numpy_matrix_basics"
+    },
+    "matplotlib": {
+        "text": "📈 Matplotlib lets you visualize insights — whether it’s trends, clusters, or loss curves during training.",
+        "link": "/tool-viewer/matplotlib_chart_gallery"
+    },
+    "scikit-learn": {
+        "text": "🤖 Scikit-learn helps you run predictions and build models like decision trees, SVMs, or KNN — plug and play ML.",
+        "link": "/tool-viewer/scikit_learn_lab_intro"
+    }
+}
+
+QUERY_HITS = {}
+
+
+@app.route('/copilot-widget-query', methods=['POST'])
+def widget_query():
+    query = request.json.get('query', '').lower()
+    for keyword, reply in RESPONSE_MAP.items():
+        if keyword in query:
+            return jsonify({'response': reply})
+    fallback = (
+        "Hmm... I didn’t catch that. You can try asking about:\n"
+        "• Pandas\n• Flask\n• TensorFlow\n• Jinja2\n"
+        "Or check out the /tools-stories_index page for more!"
+    )
+    return jsonify({'response': fallback})
+import markdown
+import os
+
+@app.route('/lab-log')
+def lab_log():
+    md_path = os.path.join('docs', 'lab_log.md')
+    with open(md_path, 'r', encoding='utf-8') as f:
+        md_content = f.read()
+    html_content = markdown.markdown(md_content)
+    return render_template('lab_log_viewer.html', content=html_content, title="AI Lab Log")
+@app.route('/lab-backup-log')
+def lab_backup_log():
+    with open("markdown_logs/backup_log.md", "r", encoding="utf-8") as f:
+        content = f.read()
+    return render_template("markdown_viewer.html", markdown_content=content)
+
+@app.route('/lab-log-history')
+def lab_log_history():
+    log_folder = "markdown_logs"
+    files = sorted(os.listdir(log_folder), reverse=True)
+    logs = []
+
+    for file in files:
+        if file.endswith(".md"):
+            path = os.path.join(log_folder, file)
+            with open(path, "r", encoding="utf-8") as f:
+                content = f.read()
+            logs.append({
+                "date": file.replace(".md", ""),
+                "html": markdown.markdown(content)
+            })
+
+    return render_template("lab_log_history.html", logs=logs, title="Lab Log History")
+
+@app.route('/featured-tool')
+def featured_tool():
+    featured = {
+        "name": "Flask",
+        "summary": RESPONSE_MAP.get("flask"),
+        "link": "/tool-viewer/flask_for_human_apps"
+    }
+    return render_template("featured_tool.html", featured=featured, title="Featured Tool")
+
+
+@app.route('/md-viewer/<name>')
+def md_viewer(name):
+    md_path = os.path.join('docs', f"{name}.md")
+    if not os.path.exists(md_path):
+        return render_template("404.html", title="Not Found"), 404
+    with open(md_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    html = markdown.markdown(content)
+    return render_template("md_viewer.html", content=html, title=name.replace('_', ' ').title())
+
+print("✅ This part of app.py is being executed")
+@app.route('/lab-map')
+def lab_map():
+    return "<h1>✅ Lab Map Test</h1>"
+
+
+@app.route('/backup-status')
+def backup_status():
+    files_to_check = [
+        'app.py',
+        os.path.join('docs', 'lab_log.md'),
+        os.path.join('docs', 'tools_stories', 'flask_for_human_apps.md')
+    ]
+    status = {}
+    for path in files_to_check:
+        status[path] = os.path.exists(path)
+    return render_template("backup_status.html", status=status, title="Backup Status")
+
+
+
+@app.route('/tool-viewer/<name>')
+def tool_viewer(name):
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    story_path = os.path.join(base_dir, 'docs', 'tools_stories', f"{name}.md")
+    print("🔍 Looking for file at:", story_path)
+    if not os.path.exists(story_path):
+        return render_template("404.html", title="Not Found"), 404
+    print("✅ Path exists.")
+    print("📥 Reading content...")
+    with open(story_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    print("🔁 Rendering markdown...")
+    html = markdown.markdown(content)
+    #return render_template("tool_viewer.html", content=html, title=name.replace('_', ' ').title())
+    return f"<h1>Raw Content</h1><pre>{content}</pre>"
+
+   
+
+@app.route('/launch-status')
+def launch_status():
+    status = {
+        "flask_routes": [rule.rule for rule in app.url_map.iter_rules()],
+        "widget_active": True,
+        "cloudflare_tunnel": "Check using external script or flag",
+        "markdown_log_loaded": os.path.exists(os.path.join('docs', 'lab_log.md'))
+    }
+    return render_template("launch_status.html", status=status, title="Launch Status")
+
+
+
+@app.route('/tools-stories_index')
+def tools-stories_index():
+    stories_path = os.path.join('docs', 'tools_stories')
+    files = [f for f in os.listdir(stories_path) if f.endswith('.md')]
+    links = [
+        {'name': f[:-3].replace('_', ' ').title(), 'url': f"/tool-viewer/{f[:-3]}"}
+        for f in files
+    ]
+    return render_template('tools-stories_index.html', links=links, title="Tool Stories Index")
+
+
+
+import datetime  # ✅ Already added — great!
+@app.route('/')
+def index():
+    # 📰 Fetch top articles
+    feed = feedparser.parse("https://www.timesofai.com/feed")
+    latest_articles = [{
+        "title": entry.title,
+        "link": entry.link
+    } for entry in feed.entries[:5]]
+
+    # 🕒 Timestamp
+    last_updated = datetime.datetime.now().strftime("%d %B, %Y – %I:%M %p")
+
+    # 🚦 Route Health (manual for now)
+    route_status = {
+        "/launch-status": "🟢 Online",
+        "/backup-status": "🟢 OK",
+        "/lab-map": "🔴 Down"
+    }
+
+    return render_template(
+    'index.html',
+    title="AI Lab Home",
+    latest_articles=latest_articles,
+    last_updated=last_updated,
+    route_status=route_status,
+    response_map=RESPONSE_MAP  # ✅ enables dynamic dropdown entries
+)
+
+import os
+import datetime
+import feedparser
+from flask import Flask, render_template
+
+
+@app.route('/dashboard')
+def dashboard():
+    feed = feedparser.parse("https://www.timesofai.com/feed")
+    articles_count = len(feed.entries)
+    last_updated = datetime.datetime.now().strftime("%d %B, %Y – %I:%M %p")
+
+    # 🧮 Markdown Log Stats
+    log_folder = "markdown_logs"
+    log_files = [f for f in os.listdir(log_folder) if f.endswith(".md")]
+    log_count = len(log_files)
+    recent_log = sorted(log_files)[-1] if log_files else "No logs yet"
+
+    return render_template(
+        'dashboard.html',
+        title="AI Lab Dashboard",
+        articles_count=articles_count,
+        last_updated=last_updated,
+        log_count=log_count,
+        recent_log=recent_log)
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+
+@app.route('/launch-status')
+def launch_status_main(): #New Name
+    status_report = {
+        "dashboard": "✅ OK",
+        "test": "✅ OK",
+        "launch-status": "✅ OK",
+        "last_checked": datetime.datetime.now().strftime("%d %B, %Y – %I:%M %p"),
+        "flask_routes": [rule.rule for rule in app.url_map.iter_rules()],
+        "widget_active": True,
+        "cloudflare_tunnel": "Check using external script or flag",
+        "markdown_log_loaded": os.path.exists(os.path.join('docs', 'lab_log.md'))
+    }
+    return render_template("launch_status.html", status=status_report, title="Launch Status")
+
+
+app.secret_key = "your-secure-secret-key"  # Required for session tracking
+
+@app.route('/ask-the-lab')
+def ask_the_lab():
+    query = request.args.get('query', '').lower()
+    entry = RESPONSE_MAP.get(query)
+
+    reply_text = entry["text"] if entry else "🤔 I’m still learning about that topic."
+    reply_link = entry["link"] if entry and "link" in entry else None
+
+    # 🕒 Session-based recent query tracking
+    if "recent_queries" not in session:
+        session["recent_queries"] = []
+
+    if query and entry and query not in session["recent_queries"]:
+        session["recent_queries"].insert(0, query)  # Add to front
+        session["recent_queries"] = session["recent_queries"][:5]  # Limit to 5
+
+    return render_template(
+        "ask_the_lab.html",
+        query=query.title(),
+        reply=reply_text,
+        link=reply_link,
+        recent=session["recent_queries"]
+    )
+
+
+@app.route("/portal")
+def portal():
+    return render_template("portal.html")
+
+@app.route("/lab-overview")
+def lab_overview():
+    last_updated = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    return render_template("overview.html", last_updated=last_updated)
+
+@app.route('/about')
+def about():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    story_path = os.path.join(base_dir, 'docs', 'tools_stories', 'about.md')
+    with open(story_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    html = markdown.markdown(content)
+    return render_template("tool_viewer.html", content=html, title="About")
+
+
+@app.route('/test')
+def test():
+    return "✅ Test route works"
+
+
+import os
+
+if __name__ == "__main__":
+    use_ssl = os.getenv("USE_SSL", "false").lower() == "true"
+    if use_ssl:
+        app.run(host="0.0.0.0", port=5000, ssl_context="adhoc")
+    else:
+        app.run(host="0.0.0.0", port=5000)
+
+

@@ -1,0 +1,19 @@
+i created the folders 
+
+D:\
+└── AI_Blog_backup
+    ├── ai_blog_backup         → Latest working snapshot
+    ├── ai_blog_incrementals   → Date-stamped session backups
+    └── ai_blog_archive        → Archived milestone zips or weekly dumps
+
+Updated lab_backup.py Script  script in C:\Users\svmal\Scripts
+
+created backup_log.md its in ai_blog/markdown_logs
+created check_backup_status.py in C:\Users\svmal\Scripts
+
+I need to work from 
+
+How to Wire This into Your Lab Interface
+Create a new route: /lab-backup-log
+
+I have made comments in between,but please try to recap and formulate the path 

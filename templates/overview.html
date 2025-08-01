@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 style="text-align:center; margin-bottom:2rem;">🧪 AI/ML Lab Overview</h1>
+
+<div class="lab-modules-grid">
+  <div class="module-card"><a href="/dashboard">📊 Dashboard</a><p>System metrics and workflow status</p></div>
+  <div class="module-card"><a href="/lab-log">📋 Learning Log</a><p>Session notes, timelines, key outcomes</p></div>
+  <div class="module-card"><a href="/tools-stories_index">🧰 Tool Stories</a><p>Deep dives into Python tools</p></div>
+  <div class="module-card"><a href="/lab-tracker">📈 Progress Tracker</a><p>Task status and milestone tracking</p></div>
+  <div class="module-card"><a href="/launch-status">🛰️ Launch Status</a><p>System health & uptime</p></div>
+</div>
+
+<p style="text-align:center; color:gray;">Last synced: {{ last_updated }}</p>
+
+{% endblock %}

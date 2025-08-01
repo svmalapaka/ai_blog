@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container">
+    <h1>📘 AI Lab Log History</h1>
+    {% for log in logs %}
+      <section class="log-entry">
+        <h2>{{ log.date }}</h2>
+        <div class="log-content">{{ log.html | safe }}</div>
+        <hr>
+      </section>
+    {% endfor %}
+  </div>
+{% endblock %}

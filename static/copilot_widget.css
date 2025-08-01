@@ -1,58 +1,41 @@
-
-#copilot-widget {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #ffffff;
+/* Rename this */
+#chatbox {
+  width: 400px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem;
-  width: 280px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  z-index: 1000;
-  font-family: 'Segoe UI', sans-serif;
+  padding: 10px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
 }
-
-#copilot-widget textarea {
-  width: 100%;
-  height: 80px;
-  padding: 0.5rem;
-  resize: none;
+#messages {
+  height: 300px;
+  overflow-y: scroll;
   border: 1px solid #ddd;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 5px;
+  font-size: 1em;
+}
+
+button {
+  padding: 5px 10px;
+  font-size: 1em;
+}
+
+.user-message {
+  background-color: #e6f7ff;
+  padding: 5px;
+  margin-bottom: 5px;
   border-radius: 4px;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-  background: #fefefe;
 }
 
-#copilot-widget button {
-  width: 100%;
-  padding: 0.6rem;
-  background-color: #0078D4;
-  color: white;
-  border: none;
+.assistant-message {
+  background-color: #fffbe6;
+  padding: 5px;
+  margin-bottom: 5px;
   border-radius: 4px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-#copilot-widget button:hover {
-  background-color: #005a9e;
-}
-
-#copilot-response {
-  margin-top: 0.7rem;
-  padding: 0.5rem;
-  background-color: #f1f1f1;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  white-space: pre-wrap;
-}
-
-/* 🔹 Active Link Styling for Navigation */
-li.active a {
-  font-weight: bold;
-  color: #007acc;
-  text-decoration: underline;
 }

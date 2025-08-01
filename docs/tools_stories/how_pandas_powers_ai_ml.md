@@ -1,3 +1,19 @@
+---
+author: Sastry Venkata Malapaka
+category: Web Tools
+last_updated: 2025-07-28
+link: /docs/tools/how_pandas_powers_ai_ml
+tags:
+- flask
+- UX
+- api
+title: How Pandas Powers Ai and ML
+---
+
+<p style="text-align:center;"><em>by Sastry Venkata Malapaka</em></p>
+
+
+
 # 🐼 How Pandas Powers AI & ML Workflows
 
 ---
@@ -57,4 +73,3 @@ Explore more deep dives:
 - `tools_details/pandas_playbook.md` → Pandas syntax and function breakdown  
 - `ml_tools.md` → Integrating Pandas with Scikit-learn and visual tools  
 - `tracker.md` → Use Pandas to log productivity sessions and graph trends
-

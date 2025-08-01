@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="chat-container">
+  <h2>💬 Ask Me Anything</h2>
+  <p><em>Your input won’t leave this lab environment.</em></p>
+
+  <div id="messages">
+    <p><strong>Assistant:</strong> Hello! Type a message to begin.</p>
+  </div>
+  <input type="text" id="userInput" placeholder="Type your question..." />
+  <button onclick="sendMessage()">Send</button>
+</div>
+{% endblock %}

@@ -1,1 +1,230 @@
-/* Placeholder for future styles */
+/* 🌟 Global Styles */
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+/* ✅ Hero Section Overlay Text */
+.hero-text-container {
+  background-color: rgba(0, 0, 0, 0.5); /* Slightly higher opacity for readability */
+  padding: 2rem;
+  border-radius: 14px;
+  display: block;
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .hero-text-container {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .hero-text-container h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text-container p {
+    font-size: 1rem;
+  }
+}
+
+
+.hero-timestamp,
+.hero-disclaimer {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  margin-top: 0.5rem;
+}
+
+/* 🔘 Hero Buttons */
+.hero-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.lab-timestamp {
+  font-size: 0.85rem;
+  color: #333;
+  background-color: #fff8dc;
+  padding: 0.5rem 1rem;
+  margin-top: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 📊 Dashboard Button */
+.dashboard-button {
+  background-color: #4CAF50;
+  color: white;
+}
+.dashboard-button:hover {
+  background-color: #388e3c;
+}
+
+/* 🔭 Explore Button */
+.explore-button {
+  background-color: #ffffff;
+  color: #264653;
+}
+.explore-button:hover {
+  background-color: #f0f0f0;
+  color: #2a6e69;
+}
+
+/* 🔝 Sticky Navigation Bar Styles */
+#sticky-header a:hover {
+  color: #00c1a0;
+  transition: color 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  #sticky-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .main-nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+
+/* 🔧 Responsive Hero Buttons for Mobile */
+@media (max-width: 600px) {
+  .hero-button {
+    display: block;
+    width: 100%;
+    margin: 0.5rem auto;
+    font-size: 1rem;
+  }
+
+  .hero-text-container {
+    padding: 1.5rem;
+  }
+}
+
+/* 📰 News Feed Grid Cards */
+.news-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.news-feed li {
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+.news-feed li:hover {
+  transform: translateY(-3px);
+  background-color: #f9f9f9;
+}
+.news-feed a {
+  color: #264653;
+  font-weight: bold;
+  text-decoration: none;
+}
+.news-feed a:hover {
+  color: #00c1a0;
+  text-decoration: underline;
+}
+
+/* 🚦 Diagnostics Status Pill */
+.status-pill {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  background-color: #e0f2f1;
+  color: #00695c;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+/* 🏷️ Tag Badge Styling */
+.tag-badge {
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-right: 6px;
+  font-size: 0.85em;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* 🎨 Tag Colors */
+.tag-log {
+  background-color: #007bff; /* blue */
+  color: #fff;
+}
+
+.tag-tool {
+  background-color: #28a745; /* green */
+  color: #fff;
+}
+
+.tag-security {
+  background-color: #ffc107; /* yellow */
+  color: #333;
+}
+
+/* ✨ Hover Effects */
+.tag-badge:hover {
+  opacity: 0.85;
+  text-decoration: underline;
+}
+
+/* 🏷️ Tag Badge Styling */
+.tag-badge {
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-right: 6px;
+  font-size: 0.85em;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* 🎨 Tag Colors */
+.tag-log {
+  background-color: #007bff; /* blue */
+  color: #fff;
+}
+
+.tag-tool {
+  background-color: #28a745; /* green */
+  color: #fff;
+}
+
+.tag-security {
+  background-color: #ffc107; /* yellow */
+  color: #333;
+}
+
+/* ✨ Hover Effect */
+.tag-badge:hover {
+  opacity: 0.85;
+  text-decoration: underline;
+}

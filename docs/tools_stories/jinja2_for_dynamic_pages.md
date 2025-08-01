@@ -1,3 +1,18 @@
+---
+author: Sastry Venkata Malapaka
+category: Web Tools
+last_updated: 2025-07-28
+link: /docs/tools/jinja2_for_dynamic_pages
+tags:
+- flask
+- UX
+- api
+title: Jinja2 For Dynamic Pages
+---
+
+<p style="text-align:center;"><em>by Sastry Venkata Malapaka</em></p>
+
+
 # 🎨 Jinja2 for Dynamic, Human-Centered Pages
 
 ---
@@ -53,4 +68,4 @@ The launch page feels like an intelligent assistant — no reloads needed, just 
 Explore the flow:
 - `flask_for_human_apps.md` → How Jinja2 plugs into Flask  
 - `tracker.md` → Render productivity log dynamically  
-- `how_pandas_powers_ai_ml.md` → Pass processed data into templates  
+- `how_pandas_powers_ai_ml.md` → Pass processed data into templates

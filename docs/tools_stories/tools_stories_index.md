@@ -1,3 +1,18 @@
+---
+author: Sastry Venkata Malapaka
+category: Web Tools
+last_updated: 2025-07-28
+link: /docs/tools/tools_stories_index
+tags:
+- flask
+- UX
+- api
+title: Index of the Tools Stories
+---
+
+<p style="text-align:center;"><em>by Sastry Venkata Malapaka</em></p>
+
+
 # 🧠 Tools in Action — Storytelling Index
 
 Explore how core Python tools support real-world AI and ML projects.  
@@ -44,4 +59,3 @@ Visualizes trends and comparisons — like learning time trackers or model accur
 ## ⚙️ NumPy — Data Engine Under the Hood  
 🔗 [`numpy_as_data_engine.md`](numpy_as_data_engine.md)  
 Handles the math behind AI — powering arrays, image matrices, and fast calculations across millions of entries.
-

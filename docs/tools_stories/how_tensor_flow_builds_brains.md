@@ -1,3 +1,18 @@
+---
+author: Sastry Venkata Malapaka
+category: Web Tools
+last_updated: 2025-07-28
+link: /docs/tools/how_tensor_flow_builds_brains
+tags:
+- flask
+- UX
+- api
+title: How tensor Flow Builds Brains
+---
+
+<p style="text-align:center;"><em>by Sastry Venkata Malapaka</em></p>
+
+
 # 🧠 How TensorFlow Builds Neural Brains
 
 ---
@@ -55,4 +70,4 @@ The app auto-sorts feedback by mood and keywords — helping the educator better
 Explore:
 - `ml_tools.md` → Full list of ML libraries  
 - `tools_common_ai_ml.md` → See how TensorFlow fits alongside Pandas and Scikit-learn  
-- `/ai_blog/launch_lab.py` → Try loading a basic model for inference  
+- `/ai_blog/launch_lab.py` → Try loading a basic model for inference

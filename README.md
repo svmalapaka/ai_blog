@@ -1,4 +1,10 @@
 # 🧠 Welcome to My AI/ML Learning Lab
+## 🌍 Live Lab Access  
+Explore the full AI Blog Lab:  
+🔗 [https://lab.mvsastry.dev](https://lab.mvsastry.dev)
+![License](https://img.shields.io/github/license/svmalapaka/ai_blog)
+![Build](https://img.shields.io/github/actions/workflow/status/svmalapaka/ai_blog/python-app.yml?branch=master)
+![Python](https://img.shields.io/badge/Python-3.11-blue)
 
 This lab is a personal playground and open-source showcase of how Python tools power real-world AI/ML workflows.  
 It’s organized to blend storytelling, diagnostics, and interactive features — like a mini Copilot that guides visitors across the platform.

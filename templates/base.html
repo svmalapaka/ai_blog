@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>{{ title or "Lab Page" }}</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title or "Lab Portal" }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='copilot_widget.css') }}">
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <script src="{{ url_for('static', filename='copilot_widget.js') }}"></script>
 </head>
 <body>
 
+  <!-- 🧭 Navigation -->
+  <header id="sticky-header">
+    <nav class="main-nav">
+      <a href="/">🏠 Home</a>
+      <a href="/dashboard">📊 Dashboard</a>
+      <a href="/tools-stories_index">🧰 Tool Stories</a>
+      <a href="/lab-log">📋 Log</a>
+      <a href="/launch-status">🚦 Status Map</a>
+      <a href="/about">📖 About</a>
+    </nav>
+  </header>
+
+  <!-- 🚪 Page-Specific Content -->
   <div id="main-content">
     {% block content %}{% endblock %}
   </div>
 
-  <!-- 🧠 Copilot Widget -->
-  <div id="copilot-widget">
-    <textarea id="user-input" placeholder="Ask me anything..."></textarea>
-    <button onclick="sendMessage()">▶</button>
-    <div id="copilot-response"></div>
-  </div>
+  <!-- 🧠 Widget (shown when enabled) -->
+  {% if show_widget %}
+    <div id="copilot-widget">
+      <textarea id="user-input" placeholder="Ask me anything..."></textarea>
+      <button onclick="sendMessage()">▶</button>
+      <div id="copilot-response"></div>
+    </div>
+  {% endif %}
 
-  <script>
-    function sendMessage() {
-      const input = document.getElementById('user-input').value;
-      fetch('/copilot-widget-query', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: input })
-      })
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('copilot-response').textContent = data.response;
-      })
-      .catch(() => {
-        document.getElementById('copilot-response').textContent = "Something went wrong.";
-      });
-    }
-  </script>
+  <!-- 🕒 Timestamp Block -->
+  <div class="lab-timestamp">
+    Last updated: {{ last_updated }}<br>
+    ℹ️ All times shown are in Eastern Daylight Time (EDT)
+  </div>
 
 </body>
 </html>

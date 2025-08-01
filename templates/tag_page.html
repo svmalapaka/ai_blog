@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tagged Posts – {{ tag }}</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    .tag-badge {
+      background-color: #e0e0e0;
+      border-radius: 6px;
+      padding: 2px 8px;
+      margin-right: 6px;
+      font-size: 0.85em;
+      text-decoration: none;
+      color: #333;
+    }
+    .post-block {
+      margin-bottom: 1.5em;
+      padding: 0.5em;
+      border-left: 4px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏷️ Posts tagged with "<strong>{{ tag }}</strong>"</h1>
+  </header>
+
+  <main>
+    {% for post in posts %}
+    <div class="post-block">
+      <a href="/tools/{{ post.metadata.slug or post.metadata.title | slugify }}">
+        🧠 <strong>{{ post.metadata.title }}</strong>
+      </a><br />
+      <small>
+        📅 Updated: {{ post.metadata.last_updated }}<br />
+        🏷️ Tags:
+        {% for t in post.metadata.tags %}
+     <a href="/tools/tag/{{ t }}" class="tag-badge tag-{{ t | lower }}">{{ t }}</a>
+     {% endfor %}
+
+
+      </small>
+    </div>
+    {% else %}
+    <p>No posts found for this tag.</p>
+    {% endfor %}
+  </main>
+
+  <footer>
+    <p><a href="/tools">🔙 Back to Tools Index</a></p>
+  </footer>
+</body>
+</html>

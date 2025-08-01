@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="markdown-wrapper">
+  <h2>🛡️ Backup Status Log</h2>
+  <div class="markdown-content">
+    {{ markdown_content | safe }}
+  </div>
+</div>
+{% endblock %}

@@ -1,9 +1,20 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>🧰 Tool Stories Index</h1>
-<ul>
-  {% for link in links %}
-    <li><a href="{{ link.url }}">{{ link.name }}</a></li>
-  {% endfor %}
-</ul>
-{% endblock %}
+<body>
+  <nav>
+    <a href="/" class="dashboard-link">🏠 Home</a>
+  </nav>
+
+  <h1>Tool Stories</h1>
+  <ul>
+    {% for story in links %}
+      <li>
+        <a href="{{ story.url }}">{{ story.name }}</a>
+        {% if story.summary %}
+          <p>{{ story.summary }}</p>
+        {% endif %}
+        {% if story.tags %}
+          <small>Tags: {{ story.tags | join(", ") }}</small>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</body>

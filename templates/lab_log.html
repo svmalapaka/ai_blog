@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>📋 Lab Log</h1>
+  <p>Tracking tool usage, diagnostics, and session notes:</p>
+
+  <ul>
+    {% for log in logs %}
+      <li><a href="/tools/{{ log.slug }}">{{ log.title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

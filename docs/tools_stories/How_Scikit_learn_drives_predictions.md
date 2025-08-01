@@ -1,3 +1,18 @@
+---
+author: Sastry Venkata Malapaka
+category: Web Tools
+last_updated: 2025-07-28
+link: /docs/tools/How_Scikit_learn_drives_predictions
+tags:
+- flask
+- UX
+- api
+title: how Scikit Learn Drives Predictions
+---
+
+<p style="text-align:center;"><em>by Sastry Venkata Malapaka</em></p>
+
+
 # 🧪 How Scikit-learn Drives Real-World Predictions
 
 ---
@@ -38,4 +53,3 @@ A customer support team wants to automate sorting of incoming complaints into ca
 
 ### 📈 Result  
 The model correctly tags incoming complaints with 92% accuracy, reducing manual triage and response times.
-

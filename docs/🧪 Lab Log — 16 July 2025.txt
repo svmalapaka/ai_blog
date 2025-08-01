@@ -1,0 +1,36 @@
+## 🧪 Lab Log — 16 July 2025
+
+### 🎯 Goals
+- Resolve persistent 404 on `/tool-viewer/pandas_basics`
+- Build and deploy an accessible `/about` route
+- Verify GitHub sync status across Windows and Linux environments
+- Clean up repo structure and `.gitignore`
+
+---
+
+### 🧠 Activities
+
+- Debugged `tool_viewer()` route using raw Markdown display
+- Identified multiple `app = Flask(__name__)` declarations causing route collisions
+- Resolved `AssertionError` due to duplicate function names
+- Built a custom `/about` page with personalized narrative
+- Verified and committed all changes via Git on Windows
+- Cleaned `.gitignore` to exclude `venv/`, logs, backup markdowns, and IDE clutter
+- Pushed a comprehensive commit to GitHub with status confirmation
+
+---
+
+### ✅ Outcomes
+
+- Lab is fully synced with GitHub (`svmalapaka/ai_blog`)
+- `docs/tools_stories` now includes: `about.md`, `pandas_basics.md`, `lab-log-2025-07-14.md`
+- Route `/about` live and styled
+- Markdown tutorials successfully rendered via `/tool-viewer/<name>`
+- Development environment now clean, versioned, and multi-platform stable
+
+---
+
+### 💬 Notes
+
+> “One extra line wiped routes, one debug print revealed the truth. Today wasn’t just about fixing Flask — it was about seeing the system clearly. This lab now runs with clarity and purpose.”
+

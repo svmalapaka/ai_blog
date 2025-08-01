@@ -1,3 +1,18 @@
+---
+author: Sastry Venkata Malapaka
+category: Web Tools
+last_updated: 2025-07-28
+link: /docs/tools/numpy_as_data_engine
+tags:
+- flask
+- UX
+- api
+title: Numpy as Data Engine
+---
+
+<p style="text-align:center;"><em>by Sastry Venkata Malapaka</em></p>
+
+
 # ⚙️ NumPy as the Engine Behind Data Computation
 
 ---

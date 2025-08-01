@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>📊 Welcome to Your Dashboard</h2>
+<p>This is where headlines, metrics, diagnostics, and learning insights all converge.</p>
+
+<hr>
+
+<!-- 📰 News Feed Snapshot Block -->
+<div style="border: 1px solid #ccc; padding: 1rem; border-radius: 8px; background-color: #f9f9f9;">
+  <h3>📰 News Feed Snapshot</h3>
+  <ul style="list-style: none; padding-left: 0;">
+    <li>Articles loaded: {{ articles_count }}</li>
+    <li>Last updated: {{ last_updated }}</li>
+  </ul>
+</div>
+<h3>🔥 Most Asked Topics</h3>
+<ul>
+  {% for topic, count in hits.items() if count > 1 %}
+    <li>{{ topic.title() }} – {{ count }} ask{{ count > 1 and 's' or '' }}</li>
+  {% endfor %}
+</ul>
+
+<!-- 📈 Article Count Chart -->
+<div style="margin-top: 2rem; text-align: center;">
+  <h3>📈 AI Article Volume</h3>
+  <canvas id="articleChart" width="400" height="200"></canvas>
+</div>
+
+<!-- 🧠 Copilot Discovery Widget (Wired Up) -->
+<form method="get" action="/ask-the-lab" style="margin-top: 2rem; text-align: center;">
+  <div style="padding: 1.5rem; border-radius: 10px; background-color: #fffdf5; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+    <h3>🧠 Ask the Lab</h3>
+    <p style="margin-bottom: 1rem; color: #444;">Type a topic or question to explore learning insights.</p>
+
+    <input type="text" name="query" placeholder="e.g. SAP + AI use case"
+      style="width: 60%; padding: 0.6rem; border-radius: 5px; border: 1px solid #ccc; font-size: 1rem;" />
+
+    <button type="submit"
+      style="padding: 0.6rem 1rem; margin-left: 1rem; background-color: #00c1a0; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+      🔍 Explore
+    </button>
+  </div>
+</form>  
+ 
+<!-- 📚 Recent Tutorials Grid -->
+<div style="margin-top: 2rem;">
+  <h3 style="text-align: center;">📚 Recent Tutorials</h3>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1rem;">
+    <!-- [your 3 cards here] -->
+  </div>
+</div>
+<!-- Chart script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('articleChart').getContext('2d');
+  const articleChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Today'],
+      datasets: [{
+        label: 'Articles Loaded',
+        data: [{{ articles_count }}],
+        backgroundColor: '#00c1a0'
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true }
+      },
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+</script>
+<!-- 🧮 Markdown Engine Guide -->
+<div style="width: 100%; max-width: 600px; margin: 1rem auto; padding: 1rem; border-radius: 10px; background-color: #f6fff6; box-shadow: 0 0 10px rgba(0,0,0,0.04);">
+  <h4>🧮 Markdown Engine Guide</h4>
+  <p><strong>Overview:</strong> Build a dynamic documentation engine with Flask that auto-scans markdown files, renders content pages, and sorts by metadata.</p>
+  <p><strong>Next step:</strong> Add filename-based filtering, timestamp sorting, and embedded charts.</p>
+  <p style="font-size: 0.85rem; color: #888;">Last updated: 14 July, 2025</p>
+</div>
+
+<!-- 🔧 SAP + AI Integration -->
+<div style="width: 100%; max-width: 600px; margin: 1rem auto; padding: 1rem; border-radius: 10px; background-color: #fff6f6; box-shadow: 0 0 10px rgba(0,0,0,0.04);">
+  <h4>🔧 SAP + AI Integration</h4>
+  <p><strong>Overview:</strong> Demonstrates how SAP workflows can trigger AI-powered decisions using backend scripts and event listeners.</p>
+  <p><strong>Next step:</strong> Add visualization of trigger chains and API logging.</p>
+  <p style="font-size: 0.85rem; color: #888;">Last updated: 15 July, 2025</p>
+</div>
+
+{% endblock %}

@@ -1,3 +1,18 @@
+---
+author: Sastry Venkata Malapaka
+category: Web Tools
+last_updated: 2025-07-28
+link: /docs/tools/flask_for_human_apps
+tags:
+- flask
+- UX
+- api
+title: Flask For Human Apps
+---
+
+<p style="text-align:center;"><em>by Sastry Venkata Malapaka</em></p>
+
+
 # ⚙️ Flask for Human-Centered Web Apps
 
 ---
@@ -55,4 +70,4 @@ Learners get instant access to structured lessons, examples, and code guides —
 Explore deeper:
 - `python_tools.md` → Learn about Flask’s ecosystem  
 - `how_pandas_powers_ai_ml.md` → Use Flask to serve Pandas-based results  
-- `ai_blog/launch_lab.py` → See your actual Flask app in action  
+- `ai_blog/launch_lab.py` → See your actual Flask app in action

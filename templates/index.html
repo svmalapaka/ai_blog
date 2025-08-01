@@ -1,44 +1,173 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>🧠 Welcome to the AI/ML Learning Lab</h1>
-<p>This is your personal space to explore, document, and interact with Python tools, machine learning workflows, and dynamic knowledge systems.</p>
+<!-- ✅ Hero Section -->
+<section id="hero" style="background: linear-gradient(to bottom, #264653, #00c1a0); padding: 4rem 2rem; text-align: center;">
+  <div class="hero-text-container">
+    <!-- 🔷 Header -->
+    <h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 3px rgba(0,0,0,0.4);">
+      🧠 Welcome to the AI/ML Learning Lab
+    </h1>
+
+    <!-- 🔷 Intro Paragraph -->
+    <p style="font-size: 1.2rem; max-width: 700px; margin: auto; color: rgba(255,255,255,0.95); text-shadow: 0 1px 3px rgba(0,0,0,0.4);">
+      This is your personal space to explore, document, and interact with Python tools, machine learning workflows, and dynamic knowledge systems.
+    </p>
+
+    <!-- 🔷 Tagline -->
+    <p class="tagline" style="margin-top: -0.5rem; font-size: 1.1rem; color: rgba(255,255,255,0.85);">
+      Explore Python, Flask, and ML workflows — interactively and intelligently.
+    </p>
+
+    <!-- 🔷 Navigation Buttons -->
+    <a href="/lab-map" class="hero-button explore-button">🔭 Start Exploring</a>
+    <a href="/dashboard" class="hero-button dashboard-button">📊 Visit Dashboard</a>
+    <a href="/launch-status" class="hero-button status-button">🛰️ View System Health</a>
+
+    <!-- 🔷 Timestamp & Disclaimer -->
+    <p class="hero-timestamp">Last updated: {{ last_updated }}</p>
+    <p class="hero-disclaimer"><span style="opacity: 0.6;">ℹ️</span> All times shown are in Eastern Daylight Time (EDT)</p>
+  </div>
+</section>
 
 <hr>
 
+<!-- 🚦 Launch Status Preview -->
+<section class="status-preview" style="padding: 1rem 2rem; text-align: center;">
+  <h2 style="margin-bottom: 1rem;">🚦 System Health Overview</h2>
+  <ul style="list-style: none; padding: 0; margin: 0 auto; max-width: 600px;">
+    <li><strong>/dashboard:</strong> <span class="status-pill">🟢 Online</span></li>
+    <li><strong>/lab-map:</strong> <span class="status-pill">🔴 Down</span></li>
+    <li><strong>/launch-status:</strong> <span class="status-pill">🟢 Stable</span></li>
+  </ul>
+  <p style="font-size: 0.8rem; color: gray; margin-top: 0.5rem;">Last checked: {{ last_updated }}</p>
+</section>
+
+
+<!-- ✅ Core Workflows -->
 <h2>🧪 Core Workflows</h2>
 <ul>
   <li class="{{ 'active' if request.path == '/lab-log' else '' }}">
-  <a href="/lab-log">📋 Learning Log</a> — journal entries, session recaps, time tracking</li>
-  <li class="{{ 'active' if request.path == '/tools_stories_index' else '' }}">
-  <a href="/tools_stories_index">🧰 Tool Stories Index</a> — deep dives into libraries like Pandas, Flask, TensorFlow</li>
+    <a href="/lab-log" class="dashboard-link">📋 Learning Log</a> — journal entries, session recaps, time tracking
+  </li>
+  <li class="{{ 'active' if request.path == '/tools-stories_index' else '' }}">
+    <a href="/tools-stories_index" class="dashboard-link">🧰 Tool Stories Index</a> — deep dives into libraries like Pandas, Flask, TensorFlow
+  </li>
 </ul>
 
-<h2>🚦 Diagnostics & Mapping</h2>
+<h2>🏗️ Python Portal Showcase: <a href="https://mvsastry.dev/python-portal" target="_blank">mvsastry.dev/python-portal</a></h2>
+<p>Your structured Python knowledge hub designed for clarity, interactivity, and scale.</p>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+  <thead>
+    <tr style="background-color: #eaeaea;">
+      <th style="padding: 0.6rem;">Route</th>
+      <th style="padding: 0.6rem;">Focus</th>
+      <th style="padding: 0.6rem;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>/python-basics</code></td><td>Core syntax & data types</td><td>Strings, lists, dicts, tuples — with interactive examples</td></tr>
+    <tr><td><code>/python-workflows</code></td><td>Scripts & automation patterns</td><td>Flask injection, Task Scheduler, Cloudflare sync</td></tr>
+    <tr><td><code>/python-for-ai</code></td><td>Python + AI/ML foundations</td><td>Pandas, NumPy, scikit-learn with use cases</td></tr>
+    <tr><td><code>/python-for-web</code></td><td>Flask, Jinja2, Markdown</td><td>Dynamic docs, blog architecture, sync scripts</td></tr>
+    <tr><td><code>/python-tools</code></td><td>Dev setup & cheat sheets</td><td>VSCode configs, Git workflows, folder strategy</td></tr>
+    <tr><td><code>/python-snippets</code></td><td>Reusable logic modules</td><td>Dict mergers, backup audits, routing hacks</td></tr>
+  </tbody>
+</table>
+<h3>🧩 Interactive Extras</h3>
 <ul>
-  <li class="{{ 'active' if request.path == '/launch-status' else '' }}">
-  <a href="/launch-status">🚦 Launch Status</a> — verify Flask routes, tunnel health, and app diagnostics</li>
-  <li class="{{ 'active' if request.path == '/backup-status' else '' }}">
-  <a href="/backup-status">🗂️ Backup Status</a> — file presence check</li>
-  <li class="{{ 'active' if request.path == '/lab-map' else '' }}">
-  <a href="/lab-map">🧭 Lab Map</a> — Explore all routes and folder structure</li>
+  <li>✅ “Try this snippet” — live Flask-powered code viewer</li>
+  <li>📜 “Layman Lens” toggles — simplified views for newcomers</li>
+  <li>🧪 “Workflow Walkthroughs” — visual diagrams of automation flows</li>
+  <li>📝 Tagged blog articles linked to Python concepts</li>
+</ul>
+<!-- ✅ Copilot Widget -->
+<div class="widget-section">
+  <h2>💬 Try the Copilot Widget</h2>
+  <a href="/chat" class="hero-button widget-button">💬 Launch Copilot Chat</a>
+  <p>Ask it questions like:</p>
+  <ul>
+    <li>“What does Jinja2 do?”</li>
+    <li>“How does scikit-learn work?”</li>
+    <li>“Explain NumPy basics”</li>
+  </ul>
+</div>
+</ul>
+<table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+  <thead>
+    <tr style="background-color: #eaeaea;">
+      <th style="padding: 0.6rem;">Route</th>
+      <th style="padding: 0.6rem;">Focus</th>
+      <th style="padding: 0.6rem;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>/python-basics</code></td>
+      <td>Core syntax & data types</td>
+      <td>Strings, lists, dicts, tuples — with interactive examples</td>
+    </tr>
+    <tr>
+      <td><code>/python-workflows</code></td>
+      <td>Scripts & automation patterns</td>
+      <td>Flask injection, Task Scheduler, Cloudflare sync</td>
+    </tr>
+    <tr>
+      <td><code>/python-for-ai</code></td>
+      <td>Python + AI/ML foundations</td>
+      <td>Pandas, NumPy, scikit-learn with use cases</td>
+    </tr>
+    <tr>
+      <td><code>/python-for-web</code></td>
+      <td>Flask, Jinja2, Markdown</td>
+      <td>Dynamic docs, blog architecture, sync scripts</td>
+    </tr>
+    <tr>
+      <td><code>/python-tools</code></td>
+      <td>Dev setup & cheat sheets</td>
+      <td>VSCode configs, Git workflows, folder strategy</td>
+    </tr>
+    <tr>
+      <td><code>/python-snippets</code></td>
+      <td>Reusable logic modules</td>
+      <td>Dict mergers, backup audits, routing hacks</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ✅ AI & ML News Highlights -->
+<h2>📰 AI & ML News Highlights</h2>
+<p class="hero-timestamp">Last updated: {{ last_updated }}</p>
+<p class="hero-disclaimer">
+  <span style="opacity: 0.6;">ℹ️</span> All times shown are in Eastern Daylight Time (EDT)
+</p>
+
+<ul class="news-feed">
+  {% for article in latest_articles %}
+    <li>
+      <a href="{{ article.link }}" target="_blank" class="dashboard-link">{{ article.title }}</a>
+    </li>
+  {% endfor %}
 </ul>
 
+<p style="font-size: 0.9rem; color: gray;">Curated from trusted AI blogs and journals</p>
 
-<hr>
 
-<h2>💬 Try the Copilot Widget</h2>
-<p>Ask it questions like:</p>
-<ul>
-  <li>“What does Jinja2 do?”</li>
-  <li>“How does scikit-learn work?”</li>
-  <li>“Explain NumPy basics”</li>
-</ul>
-<p>The assistant responds with curated insights and tips tailored to your tools and docs.</p>
-
-<hr>
-
-<h2>📚 About This Lab</h2>
-<p>Built by <strong>Sastry Malapaka</strong> as part of a career transition into AI and data science.  
-This lab is designed with clarity, intention, and scalability — blending Markdown storytelling, web interactivity, and backend automation.</p>
+<!-- ✅ Featured AI Videos Block -->
+<h2>🎥 Featured AI News Videos</h2>
+<div class="video-feed">
+  <iframe width="100%" height="315" src="https://www.youtube.com/embed/otLaYkfiSLw" frameborder="0" allowfullscreen></iframe>
+  <iframe width="100%" height="315" src="https://www.youtube.com/embed/wzXBXGVbItE" frameborder="0" allowfullscreen></iframe>
+  <iframe width="100%" height="315" src="https://www.youtube.com/embed/aZ5EsdnpLMI" frameborder="0" allowfullscreen></iframe>
+</div>
+<!-- ✅ Lab Progress Tracker -->
+<!-- ✅ Lab Progress Tracker -->
+<h2 id="lab-progress-header">📊 Lab Progress Tracker</h2>
+<section id="lab-tracker" style="background: #f4f4f4; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+  {% include 'tracker.html' %}
+  <p style="text-align: center; margin-top: 1rem;">
+    <a href="/lab-tracker" class="dashboard-link">🔎 Open Full Tracker Dashboard</a>
+  </p>
+</section>
 {% endblock %}
